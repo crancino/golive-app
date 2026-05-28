@@ -1,0 +1,31 @@
+modules:
+  jira:issuePanel:
+    - key: golive-app-integrations-panel
+      resource: main
+      resolver:
+        function: resolver
+      viewportSize: medium
+      title: Go live integrations
+      icon: https://developer.atlassian.com/platform/forge/images/icons/issue-panel-icon.svg
+  function:
+    - key: resolver
+      handler: index.handler
+resources:
+  - key: main
+    path: static/hello-world/build
+app:
+  runtime:
+    name: nodejs24.x
+    memoryMB: 256
+    architecture: arm64
+  id: ari:cloud:ecosystem::app/654f51db-ec69-49fe-b3b5-92da97f5c8c8
+permissions:
+  scopes:
+    - read:jira-work
+    - write:jira-work
+    - storage:app
+  external:
+    fetch:
+      backend:
+        - https://go-live-api.example.iit
+        - https://uptime.betterstack.com
