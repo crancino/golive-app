@@ -11,9 +11,9 @@ function App() {
   const refresh = useCallback(async () => {
     setError(null);
     try {
-      // On refresh, reconcile Betterstack state against current URL:
-      // - if no monitor exists, reset Betterstack row so "Run" is available again
-      // - if a monitor exists, mark it as success
+      // On refresh, reconcile integration state against current URL.
+      await invoke('syncCookiehub', {});
+      await invoke('syncMatomo', {});
       await invoke('syncBetterstack', {});
       const data = await invoke('getPanelData', {});
       setPanel(data);
@@ -157,7 +157,7 @@ function App() {
           </button>
         </div>
         <div style={{ marginTop: 6, fontSize: 12, color: '#6B778C' }}>
-          This overrides the issue field (and is saved per issue). Betterstack will use this value.
+          This overrides the issue field (and is saved per issue). Cookiehub, Matomo, and Betterstack use this value.
         </div>
       </div>
 

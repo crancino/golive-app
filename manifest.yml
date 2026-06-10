@@ -29,3 +29,5 @@ permissions:
       backend:
         - https://go-live-api.example.iit
         - https://uptime.betterstack.com
+        - https://iit.matomo.cloud
+        - https://dash.cookiehub.com
